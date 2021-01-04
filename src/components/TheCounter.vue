@@ -12,7 +12,8 @@ export default {
   },
   methods: {
     addONe() {
-      this.$store.commit('increaser');
+      //   this.$store.commit('increaser');
+      this.$store.dispatch('increaser');
     }
   }
 };
