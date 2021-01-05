@@ -3,14 +3,11 @@ import {createStore} from 'vuex';
 
 import App from './App.vue';
 
-const app = createApp(App);
-
-const store = createStore({
+const counterModule = {
     state() {
         return {
             counter: 0,
-            isLoggedIn: false,
-        };
+        }
     },
     mutations: {
         increaser(state) {
@@ -19,9 +16,6 @@ const store = createStore({
         increment(state, payload) {
             state.counter += payload.value;
         },
-        setAuth(state, payload) {
-            state.isLoggedIn = payload.isAuth;
-        }
     },
     actions: {
         increaser(context) {    // the name's up to you
@@ -32,12 +26,6 @@ const store = createStore({
         increment(context, payload) {
             context.commit('increment', payload) // it's a good style, to use actions even in not an async code
         },
-        logIn(context) {
-            context.commit('setAuth', {isAuth: true});
-        },
-        logOut(context) {
-            context.commit('setAuth', {isAuth: false});
-        }
     },
     getters: {
         finalCounter(state) {
@@ -53,6 +41,34 @@ const store = createStore({
             }
             return finalCounter;
         },
+    }
+}
+
+const app = createApp(App);
+
+const store = createStore({
+    modules: {
+        numbers: counterModule,
+    },
+    state() {
+        return {
+            isLoggedIn: false,
+        };
+    },
+    mutations: {
+        setAuth(state, payload) {
+            state.isLoggedIn = payload.isAuth;
+        }
+    },
+    actions: {
+        logIn(context) {
+            context.commit('setAuth', {isAuth: true});
+        },
+        logOut(context) {
+            context.commit('setAuth', {isAuth: false});
+        }
+    },
+    getters: {
         userIsAuthenticated(state) {
             return state.isLoggedIn;
         }
