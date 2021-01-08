@@ -29,7 +29,7 @@ export default {
     addOne() {
       //   this.$store.commit('increaser');
       //   this.$store.commit({ type: 'increment', value: 10 });
-      this.$store.dispatch('increment', { value: 10 }); // dispatch - using actions
+      this.$store.dispatch('numbers/increment', { value: 10 }); // dispatch - using actions
     }
   },
   computed: {

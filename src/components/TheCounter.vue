@@ -15,14 +15,15 @@ export default {
     // count() {
     //   return this.$store.getters.finalCounter;
     // }
-    ...mapGetters(['finalCounter']) // mapGetters return all getters from state
+    // ...mapGetters(['finalCounter']) // mapGetters return all getters from state
+    ...mapGetters('numbers', ['finalCounter']) // use with modules
   },
   methods: {
     // addONe() {
     //   //   this.$store.commit('increaser');
     //   this.$store.dispatch('increaser');
     // }
-    ...mapActions(['increaser'])
+    ...mapActions('numbers', ['increaser'])
   }
 };
 </script>

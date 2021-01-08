@@ -4,6 +4,7 @@ import {createStore} from 'vuex';
 import App from './App.vue';
 
 const counterModule = {
+    namespaced: true, // means that you need to use the name (the key in a modules (numbers)) of a module to get access to data of the module
     state() {
         return {
             counter: 0,
